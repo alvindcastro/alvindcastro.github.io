@@ -1,0 +1,32 @@
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Node / Astro
+node_modules/
+dist/
+.astro/
+.cache/
+
+# Environment
+.env
+.env.local
+
+# Logs
+*.log
+
+# Build output
+out/
+build/
+
+# Internal planning/meta docs — not part of the blog
+CHANGELOG.md
+CLAUDE.md
+PHASES.md
+PLANNING.md
+groupscout-build-log.md
