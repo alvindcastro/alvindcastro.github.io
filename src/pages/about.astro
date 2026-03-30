@@ -1,0 +1,72 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Layout title="About | Alvin De Castro">
+    <Header />
+
+    <main class="min-h-screen px-4 sm:px-6 md:px-6">
+        <section class="max-w-3xl mx-auto pt-32 sm:pt-40 pb-20 fade-in">
+
+            <!-- Page Title -->
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-8">
+                About
+            </h1>
+
+            <!-- Intro -->
+            <div class="space-y-6 text-base sm:text-lg leading-relaxed text-gray-600 dark:text-gray-400">
+                <p>
+                    I’m a senior software engineer focused on building cloud‑native backend systems and
+                    AI‑powered tools. Most of my work centers on distributed systems, automation, and
+                    improving reliability in complex environments.
+                </p>
+
+                <p>
+                    I’ve spent several years designing and operating production systems using technologies
+                    like Golang, Java, Python, Kubernetes, and cloud platforms such as Azure and AWS. More
+                    recently, I’ve been working on AI integrations — including LLM‑based services, retrieval‑
+                    augmented generation, and workflow automation — with an emphasis on practical,
+                    measurable impact.
+                </p>
+
+                <p>
+                    I care about clarity, maintainability, and solving real problems. Whether I’m working on
+                    enterprise systems or side projects, my goal is to build things that are simple to reason
+                    about, easy to operate, and resilient over time.
+                </p>
+
+                <p>
+                    This site is a collection of side projects, experiments, and notes from building and
+                    shipping software — particularly around cloud systems, AI tooling, and developer
+                    workflows.
+                </p>
+
+                <p class="text-sm text-gray-500 dark:text-gray-500">
+                    Outside of work, I enjoy running, hiking, and spending time with my family.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <Footer />
+
+    <!-- Fade-in animation -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const observer = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add("visible");
+                        }
+                    });
+                },
+                { threshold: 0.1 }
+            );
+
+            document.querySelectorAll(".fade-in").forEach((el) => observer.observe(el));
+        });
+    </script>
+</Layout>

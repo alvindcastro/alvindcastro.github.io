@@ -1,0 +1,124 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+// English-only project descriptions (kept for later use)
+const descriptions = import.meta.glob(
+	"../project-descriptions/*/descripcion.en.md",
+	{ query: "?raw", import: "default" }
+);
+
+// Build project list (not rendered for now)
+const projects = await Promise.all(
+	Object.entries(descriptions).map(async ([path, loader]) => {
+		const content = (await loader()) as string;
+		const parts = path.split("/");
+		const slug = parts[parts.length - 2];
+		const title = content.split("\n")[0].replace(/### |# /g, "");
+
+		return { slug, name: title };
+	})
+);
+
+// Featured project
+const featuredProject = {
+	title: "Group Scout",
+	description:
+		"A side project exploring collaboration, discovery, and group‑based workflows. Includes a public build log and technical notes.",
+	url: "https://alvindcastro.github.io/groupscout-blog",
+};
+---
+
+<Layout title="Projects | Alvin De Castro">
+	<Header />
+
+	<main class="min-h-screen px-4 sm:px-6 md:px-6">
+		<section class="max-w-3xl mx-auto pt-24 sm:pt-32 md:pt-40 pb-20 fade-in">
+
+			<!-- Page Intro -->
+			<div class="max-w-2xl mb-16">
+				<p class="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-400 mb-3 tracking-wider uppercase">
+					Selected Work
+				</p>
+
+				<h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white">
+					Projects
+				</h1>
+
+				<p class="mt-4 text-sm sm:text-lg text-gray-600 dark:text-gray-400">
+					A focused selection of side projects and experiments around backend systems,
+					automation, and practical tooling.
+				</p>
+			</div>
+
+			<!-- Featured Project -->
+			<div class="mb-8">
+				<p class="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-400 mb-3 tracking-wider uppercase">
+					Featured Project
+				</p>
+
+				<a
+					href={featuredProject.url}
+					target="_blank"
+					rel="noopener noreferrer"
+					class="group block p-6 rounded-xl border border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-900/50 hover:border-gray-300 dark:hover:border-gray-700 transition-colors"
+				>
+					<h2 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-3">
+						{featuredProject.title}
+					</h2>
+
+					<p class="text-sm sm:text-base text-gray-600 dark:text-gray-400 max-w-2xl mb-4">
+						{featuredProject.description}
+					</p>
+
+					<span class="inline-flex items-center text-sm font-medium text-gray-900 dark:text-white">
+            View project
+            <svg
+				class="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1"
+	            fill="none"
+	            stroke="currentColor"
+	            viewBox="0 0 24 24"
+			>
+              <path
+				  stroke-linecap="round"
+	              stroke-linejoin="round"
+	              stroke-width="2"
+	              d="M9 5l7 7-7 7"
+			  />
+            </svg>
+          </span>
+				</a>
+			</div>
+
+			<!-- Other projects intentionally hidden for now -->
+
+		</section>
+	</main>
+
+	<Footer />
+
+	<!-- Fade-in animation -->
+	<script>
+		document.addEventListener("DOMContentLoaded", () => {
+			const observer = new IntersectionObserver(
+				(entries) => {
+					entries.forEach((entry) => {
+						if (entry.isIntersecting) {
+							entry.target.classList.add("visible");
+						}
+					});
+				},
+				{ threshold: 0.1 }
+			);
+
+			document.querySelectorAll(".fade-in").forEach((el) =>
+				observer.observe(el)
+			);
+		});
+	</script>
+</Layout>
+
+<style>
+	@reference "../styles/global.css";
+</style>

@@ -1,0 +1,56 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import { getCollection } from "astro:content";
+
+const posts = await getCollection("blog");
+---
+
+<Layout title="Blog | Alvin De Castro">
+    <Header />
+
+    <main class="min-h-screen px-4 sm:px-6 md:px-6">
+        <section class="max-w-3xl mx-auto pt-32 pb-24">
+
+            <!-- Header -->
+            <header class="mb-16">
+                <h1 class="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+                    Writing
+                </h1>
+                <p class="text-base sm:text-lg text-gray-600 dark:text-gray-400 max-w-2xl">
+                    Notes on building small systems, automation, and software decisions.
+                </p>
+            </header>
+
+            <!-- Posts -->
+            <div class="space-y-8">
+                {posts.map((post) => (
+                        <a
+                                href={`/blog/${post.slug}`}
+                                class="block group"
+                        >
+                            <h2 class="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white group-hover:underline">
+                                {post.data.title}
+                            </h2>
+
+                            <p class="text-sm text-gray-500 dark:text-gray-500 mt-1">
+                                {new Date(post.data.date).toLocaleDateString(undefined, {
+                                    year: "numeric",
+                                    month: "long",
+                                    day: "numeric",
+                                })}
+                            </p>
+                        </a>
+                ))}
+            </div>
+
+            <p class="mt-16 text-sm text-gray-500 dark:text-gray-500">
+                More posts coming as I continue exploring and building.
+            </p>
+
+        </section>
+    </main>
+
+    <Footer />
+</Layout>

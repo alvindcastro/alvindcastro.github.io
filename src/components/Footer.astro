@@ -1,0 +1,54 @@
+---
+import AstroDark from "../assets/Astro_dark.svg";
+import AstroLight from "../assets/Astro_light.svg";
+import TailwindIcon from "../assets/tailwindcss.svg";
+---
+
+<footer class="border-t border-gray-200 dark:border-gray-800 py-6 mt-16 bg-white dark:bg-gray-950 transition-colors">
+	<div class="max-w-3xl mx-auto px-4 text-center space-y-3">
+
+		<!-- Copyright -->
+		<p class="text-xs text-gray-500 dark:text-gray-500">
+			© {new Date().getFullYear()} Alvin De Castro
+		</p>
+
+		<!-- Attribution -->
+		<div class="flex flex-wrap items-center justify-center gap-2 text-[11px] text-gray-400 dark:text-gray-500">
+			<span>Built with</span>
+
+			<a
+				href="https://astro.build"
+				target="_blank"
+				rel="noopener noreferrer"
+				class="hover:opacity-80 transition-opacity"
+				aria-label="Astro"
+			>
+				<img src={AstroLight.src} class="dark:hidden h-3 w-auto" alt="Astro" />
+				<img src={AstroDark.src} class="hidden dark:block h-3 w-auto" alt="Astro" />
+			</a>
+
+			<span>&</span>
+
+			<a
+				href="https://tailwindcss.com"
+				target="_blank"
+				rel="noopener noreferrer"
+				class="hover:opacity-80 transition-opacity"
+				aria-label="Tailwind CSS"
+			>
+				<img src={TailwindIcon.src} class="h-3 w-auto" alt="Tailwind CSS" />
+			</a>
+
+			<span class="opacity-60">·</span>
+
+			<a
+				href="https://github.com/JavierDvlpr/javierdvlpr.github.io"
+				target="_blank"
+				rel="noopener noreferrer"
+				class="hover:underline opacity-60"
+			>
+				Theme by Javier Castillo
+			</a>
+		</div>
+	</div>
+</footer>
