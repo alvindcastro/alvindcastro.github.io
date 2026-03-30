@@ -1,17 +1,164 @@
 ---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
 
+// Optional: replace with your own photo later
+// import heroPhoto from "../assets/photo.jpeg";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="Home | Alvin De Castro">
+	<Header />
+
+	<main class="min-h-screen px-4 sm:px-6 md:px-6">
+		<!-- HERO -->
+		<section class="max-w-3xl mx-auto min-h-[calc(100vh-5rem)] flex flex-col justify-center pt-32 sm:pt-48 pb-16 sm:pb-24 fade-in">
+			<div class="flex flex-col items-center gap-6 sm:gap-8 text-center">
+
+				<!-- Avatar + status -->
+				<div class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
+					<div class="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-full bg-gray-100 dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-600 flex items-center justify-center overflow-hidden animated-border always-visible flex-shrink-0 shadow-lg dark:shadow-white/20">
+						<!-- Uncomment when you add a photo -->
+						<!-- <img src={heroPhoto.src} alt="Alvin De Castro" class="w-full h-full object-cover" /> -->
+						<span class="text-3xl text-gray-500 dark:text-gray-400">👋</span>
+					</div>
+
+					<div class="animated-border always-visible px-4 py-2 rounded-full border border-gray-300 dark:border-gray-600 h-fit">
+						<p class="text-sm font-medium text-gray-900 dark:text-white whitespace-nowrap">
+							Building & experimenting
+						</p>
+					</div>
+				</div>
+
+				<!-- Intro -->
+				<div>
+					<p class="text-sm font-medium text-gray-600 dark:text-gray-400 mb-2">
+						Hi, I’m
+					</p>
+
+					<h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">
+						Alvin De Castro
+					</h1>
+
+					<p class="text-base sm:text-lg text-gray-600 dark:text-gray-400 max-w-xl mx-auto mb-6">
+						Software developer building side projects, tools, and experiments with a focus on
+						clarity, automation, and real‑world usefulness.
+					</p>
+
+					<!-- CTAs -->
+					<div class="flex flex-wrap gap-3 justify-center">
+						<a
+							href="/projects"
+							class="px-5 py-2.5 bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-medium rounded-full hover:animated-bg transition-all"
+						>
+							View Projects
+						</a>
+
+						<a
+							href="/blog"
+							class="animated-border px-5 py-2.5 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white font-medium rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+						>
+							Read the Blog
+						</a>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ABOUT -->
+		<section class="max-w-3xl mx-auto py-14 sm:py-20 border-t border-gray-200 dark:border-gray-700 fade-in">
+			<h2 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-6">
+				About Me
+			</h2>
+
+			<div class="space-y-4 text-base sm:text-lg leading-relaxed text-gray-600 dark:text-gray-400">
+				<p>
+					I’m a software developer who enjoys building small, practical tools and side projects.
+					I work mostly with web technologies, automation, and modern JavaScript frameworks, with a
+					strong focus on maintainability and solving real problems.
+				</p>
+
+				<p>
+					This site is a collection of projects I’ve built, experiments I’m running, and notes about
+					what I learn along the way — from shipping side projects to improving developer workflows.
+				</p>
+			</div>
+		</section>
+
+		<!-- TECH STACK -->
+		<section class="max-w-3xl mx-auto py-14 sm:py-20 border-t border-gray-200 dark:border-gray-700 fade-in">
+			<h2 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-8">
+				Tech Stack
+			</h2>
+
+			<div class="flex flex-wrap gap-3">
+				{[
+					// Languages
+      "Golang",
+					"Java",
+					"Python",
+					"Bash",
+
+					// AI / LLM
+      "Azure OpenAI",
+					"OpenAI API",
+					"RAG Architectures",
+					"LLM Integration",
+					"Prompt Engineering",
+
+					// Backend & Messaging
+      "Microservices",
+					"REST APIs",
+					"gRPC",
+					"Apache Kafka",
+					"Apache NiFi",
+
+					// Data
+      "PostgreSQL",
+					"MySQL",
+					"MongoDB",
+					"InfluxDB",
+					"Oracle",
+
+					// Cloud & DevOps
+      "Azure",
+					"AWS",
+					"Kubernetes",
+					"Docker",
+					"GitHub Actions",
+					"GitLab CI",
+
+					// Observability & Testing
+      "Prometheus",
+					"Grafana",
+					"Distributed Tracing",
+					"Playwright",
+				].map((tech) => (
+					<span class="px-4 py-2 rounded-full border border-gray-300 dark:border-gray-600 text-sm font-medium text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+        {tech}
+      </span>
+				))}
+			</div>
+		</section>
+	</main>
+
+	<Footer />
+
+	<!-- Simple fade-in animation -->
+	<script>
+		document.addEventListener("DOMContentLoaded", () => {
+			const observer = new IntersectionObserver(
+				(entries) => {
+					entries.forEach((entry) => {
+						if (entry.isIntersecting) {
+							entry.target.classList.add("visible");
+						}
+					});
+				},
+				{ threshold: 0.1 }
+			);
+
+			document.querySelectorAll(".fade-in").forEach((el) => observer.observe(el));
+		});
+	</script>
+</Layout>
